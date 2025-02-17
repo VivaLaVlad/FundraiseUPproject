@@ -23,7 +23,20 @@
     for(i=0;i<7;i++)o[l[i]]=o(l[i]);w[n]=o}
     })(window,document,'script','FundraiseUp','AEMZUDUM');</script>
     <!-- End Fundraise Up -->
-
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const donationButton = document.querySelector("a[href^='#']");
+    
+    if (donationButton) {
+        donationButton.addEventListener("click", function() {
+            gtag('event', 'checkout_opened', {
+                'event_category': 'Fundraising',
+                'event_label': 'Donation Checkout'
+            });
+        });
+    }
+});
+</script>
 </head>
 <style>
     body {
