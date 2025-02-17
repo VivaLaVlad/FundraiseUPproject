@@ -25,14 +25,20 @@
     <!-- End Fundraise Up -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    const donationButton = document.querySelector("a[href^='#']");
-    
+    const donationButton = document.querySelector(".donate-button"); // Используем класс кнопки
+
     if (donationButton) {
-        donationButton.addEventListener("click", function() {
+        donationButton.addEventListener("click", function(event) {
+            event.preventDefault(); // Предотвращаем стандартное поведение ссылки
             gtag('event', 'checkout_opened', {
                 'event_category': 'Fundraising',
                 'event_label': 'Donation Checkout'
             });
+
+            // Ждём 500 мс, чтобы Google Analytics успел обработать событие
+            setTimeout(() => {
+                window.location.href = donationButton.getAttribute("href");
+            }, 500);
         });
     }
 });
